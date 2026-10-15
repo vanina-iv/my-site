@@ -2,18 +2,23 @@ import { ArrowUpRight } from 'lucide-react'
 import { BOOKING_URL } from '@/src/config'
 import { cn } from '@/lib/utils'
 
-export function BookButton({
+export function LinkButton({
+  href,
   size = 'md',
+  external = true,
   className,
+  children,
 }: {
+  href: string
   size?: 'sm' | 'md' | 'lg'
+  external?: boolean
   className?: string
+  children: React.ReactNode
 }) {
   return (
     <a
-      href={BOOKING_URL}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={href}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       className={cn(
         'inline-flex items-center justify-center gap-2 rounded-full bg-primary font-medium text-primary-foreground transition-colors hover:bg-primary/90',
         size === 'sm' && 'h-9 px-4 text-sm',
@@ -22,10 +27,42 @@ export function BookButton({
         className,
       )}
     >
-      Book an intro call
-      <ArrowUpRight aria-hidden="true" className="size-4" />
-      <span className="sr-only">(opens in a new tab)</span>
+      {children}
+      {external && (
+        <>
+          <ArrowUpRight aria-hidden="true" className="size-4" />
+          <span className="sr-only">(opens in a new tab)</span>
+        </>
+      )}
     </a>
+  )
+}
+
+export function BookButton({
+  size = 'md',
+  className,
+}: {
+  size?: 'sm' | 'md' | 'lg'
+  className?: string
+}) {
+  return (
+    <LinkButton href={BOOKING_URL} size={size} className={className}>
+      Book an intro call
+    </LinkButton>
+  )
+}
+
+export function Eyebrow({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <p
+      className={cn(
+        'mb-4 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.14em] text-muted-foreground',
+        className,
+      )}
+    >
+      <span aria-hidden="true" className="size-1.5 rounded-full bg-primary" />
+      {children}
+    </p>
   )
 }
 

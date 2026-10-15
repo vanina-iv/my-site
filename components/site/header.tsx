@@ -5,11 +5,11 @@ import { Menu, X } from 'lucide-react'
 import { BookButton, Container } from './primitives'
 
 const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#services', label: 'Services' },
-  { href: '#case-studies', label: 'Case studies' },
-  { href: '#newsletter', label: 'Newsletter' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#about', label: 'About' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#case-studies', label: 'Case studies' },
+  { href: '/#newsletter', label: 'Newsletter' },
+  { href: '/#contact', label: 'Contact' },
 ]
 
 export function Header() {
@@ -19,7 +19,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between gap-6">
         <a
-          href="#top"
+          href="/#top"
           className="font-heading text-lg font-bold tracking-tight text-foreground"
         >
           Vanina Ivanova
